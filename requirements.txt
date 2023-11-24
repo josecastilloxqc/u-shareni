@@ -1,0 +1,4 @@
+FLASK
+python-dotenv
+sqlachemy
+sqlachemy-orm
