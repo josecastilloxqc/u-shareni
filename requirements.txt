@@ -1,4 +1,4 @@
 FLASK
 python-dotenv
-sqlachemy
-sqlachemy-orm
+sqlalchemy
+sqlalchemy-orm
