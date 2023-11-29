@@ -424,6 +424,8 @@ body.dark .switch::before {
     border-radius: 6px;
     border: 2px dashed var(--primary-color);
     padding-top: 40%;
+    background-position: center;
+    background-size: cover;
 }
 
 body.dark .home-content #pdf-view {

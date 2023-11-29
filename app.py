@@ -22,10 +22,6 @@ def logout():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
-<<<<<<< HEAD
-
-    return render_template("register.html")
-=======
     if request.method == "GET":
         return render_template("/register.html")
     
@@ -33,7 +29,6 @@ def register():
     contraseña = request.form.get("password")
     confirmacion = request.form.get("confirmation")
     correo = request.form.get("correo")
->>>>>>> 16c92f30f3b00e66aa13496fd193fa960c06ad5c
 
     redirect ("/login.html")
 
