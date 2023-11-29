@@ -1,16 +1,15 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request
 app = Flask(__name__)
 
 @app.route("/")
-def home():
+def index():
     """Website home"""
     return render_template("login.html")
 
-
-# @app.route("/login", methods=["GET", "POST"])
-# def login():
-#     """Log user in"""
-#     return render_template("login.html")
+@app.route("/home")
+def home():
+    """Website home"""
+    return render_template("home.html")
 
 @app.route("/logout")
 def logout():
@@ -20,7 +19,15 @@ def logout():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
-    return render_template("register.html")
+    if request.method == "GET":
+        return render_template("/register.html")
+    
+    nombre = request.form.get("name")
+    contraseña = request.form.get("password")
+    confirmacion = request.form.get("confirmation")
+    correo = request.form.get("correo")
+
+    if not nombre:
 
 
 if __name__ == '__main__':
