@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 app = Flask(__name__)
 
 @app.route("/")
@@ -10,7 +10,7 @@ def home():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
-        return render_template("login.html")
+    return render_template("login.html")
 
 @app.route("/logout")
 def logout():
