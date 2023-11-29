@@ -27,7 +27,7 @@ def register():
     confirmacion = request.form.get("confirmation")
     correo = request.form.get("correo")
 
-    if not nombre:
+
 
 
 if __name__ == '__main__':
