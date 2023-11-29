@@ -32,6 +32,12 @@ def register():
 
     redirect ("/login.html")
 
+@app.route("/upload", methods=["GET", "POST"])
+def upload():
+    """Upload file"""
+    if request.method == "GET":
+        return render_template("/upload.html")
+
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000, debug=True)
  
