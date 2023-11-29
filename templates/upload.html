@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Cargar Tareas
+{% endblock %}
+
+{% block main %}
+<form class="upload">
+    <label for="input-file" id="drop-area">
+        <input type="file" accept="application/pdf" id="input-file" hidden>
+        <div id="pdf-view">
+            <i class='bx bx-cloud-upload icon'></i>
+            <p>Arrastre y suelte o haga clic aquí<br>para cargar un PDF</p>
+        </div>
+    </label>
+    <div class="file-description">
+        <div class="title">Título</div>
+        <textarea id="title" maxlength="100" required></textarea>
+        <div class="description">Descripción</div>
+        <textarea id="description" maxlength="400" required></textarea>
+        <div class="clasification">Clasificación</div>
+        <div class="selection">
+            <div class="dropdown">
+                <div class="select">
+                    <span class="selected">Materia</span>
+                    <div class="caret"></div>
+                </div>
+                <ul class="menu">
+                    <li>Matemáticas</li>
+                    <li>Química</li>
+                    <li>Programación</li>
+                    <li>Inglés</li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <div class="select">
+                    <span class="selected">Clase</span>
+                    <div class="caret"></div>
+                </div>
+                <ul class="menu">
+                    <li>Matemáticas I</li>
+                    <li>Química General</li>
+                    <li>Programación</li>
+                    <li>Inglés I</li>
+                </ul>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Subir</button>
+    </div>
+</form>
+<script>
+    /*const dropArea = document.getElementById("drop-area"),
+          inputFile = document.getElementById("input-file"),
+          pdfView = document.getElementById("pdf-view");
+
+          inputFile.addEventListener("change", uploadPdf);
+
+          function uploadPdf() {
+            let pdfLink = URL.createObjectURL(inputFile.files[0]);
+            pdfView.style.backgroundImage = `url(${pdfLink})`;
+          }*/
+
+    const dropdowns = document.querySelectorAll('.dropdown');
+          dropdowns.forEach(dropdown => {
+            const select = dropdown.querySelector('.select'),
+                  caret = dropdown.querySelector('.caret'),
+                  menu = dropdown.querySelector('.menu'),
+                  options = dropdown.querySelectorAll('.menu li'),
+                  selected = dropdown.querySelector('.selected');
+
+            select.addEventListener('click', () => {
+                select.classList.toggle('select-clicked');
+                caret.classList.toggle('caret-rotate');
+                menu.classList.toggle('menu-open');
+            });
+
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    selected.innerText = option.innerText;
+                    select.classList.remove('selected-clicked');
+                    caret.classList.remove('caret-rotate');
+                    menu.classList.remove('menu-open');
+
+                    options.forEach(option => {
+                        option.classList.remove('active');
+                    });
+
+                    option.classList.add('active');
+                });
+            });
+          });
+</script>
+{% endblock %}
