@@ -20,7 +20,7 @@
         <textarea id="description" maxlength="400" required></textarea>
         <div class="clasification">Clasificación</div>
         <div class="selection">
-            <div class="dropdown">
+            <div class="dropdown" >
                 <div class="select">
                     <span class="selected">Materia</span>
                     <div class="caret"></div>
@@ -49,6 +49,7 @@
     </div>
 </form>
 <script>
+    /*----------------Cargar Archivos-----------------------*/
     const dropArea = document.getElementById("drop-area"),
           inputFile = document.getElementById("input-file"),
           pdfView = document.getElementById("pdf-view");
@@ -71,7 +72,8 @@
             inputFile.files = e.dataTransfer.files;
             uploadPdf();
           });
-
+    
+    /*-----------------Lista desplegables-------------------*/
     const dropdowns = document.querySelectorAll('.dropdown');
           dropdowns.forEach(dropdown => {
             const select = dropdown.querySelector('.select'),
