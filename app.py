@@ -5,9 +5,12 @@ app = Flask(__name__)
 def index():
     """Website home"""
     if request.method == "GET":
-        return render_template("login.html")
+        return render_template("/")
     
-
+@app.route("/login")
+def login():
+    """Log user in"""
+    return render_template("/login.html")
 
 @app.route("/home")
 def home():
