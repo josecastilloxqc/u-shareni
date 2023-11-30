@@ -1,6 +1,6 @@
 import sqlite3
 from flask import Flask, render_template, redirect, request
-
+from database import *
 
 app = Flask(__name__)
 
