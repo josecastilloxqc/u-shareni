@@ -18,9 +18,17 @@ def login():
     
     if request.method == "GET":
         return render_template("login.html")
+    
+    nombre_usuario = request.form.get("name")
+    contraseña = request.form.get("password")
+
+    if nombre_usuario == "usuario" and contraseña == "contraseña":
+        Session["logged_in"] = True
+        return redirect("/home.html")
+    else:
+        return "Credenciales inválidas"
         
     return redirect("home.html")
-
 @app.route("/home")
 def home():
     """Website home"""
@@ -31,7 +39,7 @@ def logout():
     """Log user out"""
 
     Session.clear()
-    
+
     return redirect("login.html")
 
 @app.route("/register", methods=["GET", "POST"])
