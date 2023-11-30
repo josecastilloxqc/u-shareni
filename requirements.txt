@@ -2,3 +2,4 @@ FLASK
 python-dotenv
 sqlalchemy
 sqlalchemy-orm
+psycopg2
