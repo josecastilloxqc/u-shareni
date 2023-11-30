@@ -1,16 +1,24 @@
+import sqlite3
 from flask import Flask, render_template, redirect, request
+
+
 app = Flask(__name__)
+
 
 @app.route("/")
 def index():
     """Website home"""
     if request.method == "GET":
-        return render_template("/")
+        return render_template("login.html")
     
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
-    return render_template("/login.html")
+    
+    if request.method == "GET":
+        return render_template("login.html")
+        
+    return redirect("home.html")
 
 @app.route("/home")
 def home():
@@ -20,7 +28,7 @@ def home():
 @app.route("/logout")
 def logout():
     """Log user out"""
-    return redirect("/")
+    return redirect("login.html")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -33,13 +41,13 @@ def register():
     confirmacion = request.form.get("confirmation")
     correo = request.form.get("correo")
 
-    redirect ("/login.html")
+    return redirect("login.html")
 
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
     """Upload file"""
     if request.method == "GET":
-        return render_template("/upload.html")
+        return render_template("upload.html")
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000, debug=True)
