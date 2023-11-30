@@ -17,17 +17,7 @@ def login():
     
     if request.method == "GET":
         return render_template("login.html")
-    
-    # nombre_usuario = request.form.get("name")
-    # contraseña = request.form.get("password")
-
-    # if nombre_usuario == "usuario" and contraseña == "contraseña":
-    #     Session["logged_in"] = True
-    #     return redirect("/home.html")
-    # else:
-    #     return "Credenciales inválidas"
-        
-    # return redirect("home.html")
+   
 @app.route("/home")
 def home():
     """Website home"""
@@ -52,14 +42,6 @@ def register():
     confirmacion = request.form.get("confirmation")
     correo = request.form.get("correo")
 
-    # conn = sqlite3.connect("database.py")
-
-    # with conn:
-
-    #     try:
-    #         conn.execute("INSERT INTO usuarios (nombre, contraseña, correo) VALUES (?, ?, ?)", (nombre, contraseña, correo))
-    #     except:
-    #         return render_template("register.html")
         
 
     return redirect("login.html")
