@@ -1,6 +1,5 @@
 import sqlite3
 from flask import Flask, render_template, redirect, request
-from flask_session import Session
 
 
 app = Flask(__name__)
@@ -19,16 +18,16 @@ def login():
     if request.method == "GET":
         return render_template("login.html")
     
-    nombre_usuario = request.form.get("name")
-    contraseña = request.form.get("password")
+    # nombre_usuario = request.form.get("name")
+    # contraseña = request.form.get("password")
 
-    if nombre_usuario == "usuario" and contraseña == "contraseña":
-        Session["logged_in"] = True
-        return redirect("/home.html")
-    else:
-        return "Credenciales inválidas"
+    # if nombre_usuario == "usuario" and contraseña == "contraseña":
+    #     Session["logged_in"] = True
+    #     return redirect("/home.html")
+    # else:
+    #     return "Credenciales inválidas"
         
-    return redirect("home.html")
+    # return redirect("home.html")
 @app.route("/home")
 def home():
     """Website home"""
@@ -38,9 +37,9 @@ def home():
 def logout():
     """Log user out"""
 
-    Session.clear()
+    # Session.clear()
 
-    return redirect("login.html")
+    # return redirect("login.html")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
