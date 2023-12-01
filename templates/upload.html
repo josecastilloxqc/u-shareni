@@ -5,8 +5,11 @@
 {% endblock %}
 
 {% block main %}
-<form class="upload">
+
+
+<form class="upload" action="/postear" method="POST" enctype="multipart/form-data">
     <label for="input-file" id="drop-area">
+        <a href="{{ url_for('descargar_archivo', nombre_archivo='C70RBENU1X_986ZKSPMD.pdf') }}" download>Descargar</a>
         <input type="file" accept="application/pdf" id="input-file" name="archivo_pdf" hidden>
         <div id="pdf-view">
             <i class='bx bx-cloud-upload icon'></i>

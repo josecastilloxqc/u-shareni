@@ -16,6 +16,9 @@ engine = create_engine(DATABASE_URL, echo=True)
 db = scoped_session(sessionmaker(bind=engine))
 
 def createtable():
+    db.execute(text("DROP TABLE IF EXISTS users CASCADE"))
+    db.execute(text("DROP TABLE IF EXISTS publi CASCADE"))
+    
     usuario = text("""
         CREATE TABLE users (
             id SERIAL PRIMARY KEY,
