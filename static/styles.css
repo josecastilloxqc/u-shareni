@@ -615,3 +615,40 @@ body.dark .active {
     display: block;
     opacity: 1;
 }
+
+.card-container {
+    display: grid; /* Utiliza CSS Grid para organizar las cards */
+    grid-template-columns: 1fr 1fr; /* Crea dos columnas de igual tamaño */
+    gap: 15px; /* Establece un espacio entre las cards */
+    justify-items: center; /* Centra horizontalmente las cards dentro de las columnas */
+    align-content: center; /* Centra verticalmente las filas de cards */
+    height: 90vh; /* Establece la altura del contenedor al 100% del viewport */
+    margin-top : -70px;
+  }
+  
+
+  .card {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px; /* Agrega esquinas redondeadas */
+    width: 350px; /* Ajusta el ancho de la card según tus necesidades */
+    height: 200px; /* Ajusta la altura de la card según tus necesidades */
+   
+  }
+  
+  .card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .card h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .card p {
+    font-size: 16px;
+    color: #888;
+  }

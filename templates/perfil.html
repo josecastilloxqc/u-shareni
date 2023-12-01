@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Cargar Tareas
+{% endblock %}
+
+{% block main %}
+
+
+<form action="/cambiarDatos" method="POST">
+
+    <h2>Perfil</h2>
+    <span>Al cambiar algun dato debera volver a iniciar sesión</span>
+    <div class="form-group">
+        <label for="name">Nombre:</label>
+        <input type="text" class="form-control" id="name" name="nombreUsuario">
+    </div>
+    <div class="form-group">
+        <label for="name">Correo:</label>
+        <input type="text" class="form-control" id="name" name="correoUsuario">
+    </div>
+    <div class="form-group">
+        <label for="password">Contraseña:</label>
+        <input type="password" class="form-control" id="password" name="contraUsuario">
+    </div>
+    <button type="submit" class="btn btn-primary">Cambiar Datos</button>
+
+</form>
+{% endblock %}

@@ -5,9 +5,11 @@
 {% endblock %}
 
 {% block main %}
-<form class="upload">
+
+
+<form class="upload" action="/postear" method="POST" enctype="multipart/form-data">
     <label for="input-file" id="drop-area">
-        <input type="file" accept="application/pdf" id="input-file" hidden>
+        <input type="file" accept="application/pdf" id="input-file" name="archivo_pdf" hidden>
         <div id="pdf-view">
             <i class='bx bx-cloud-upload icon'></i>
             <p>Arrastre y suelte o haga clic aquí<br>para cargar un PDF</p>
@@ -15,24 +17,22 @@
     </label>
     <div class="file-description">
         <div class="title">Título</div>
-        <textarea id="title" maxlength="100" required></textarea>
+        <textarea id="title" maxlength="100" name="titulo_archivo" required></textarea>
         <div class="description">Descripción</div>
-        <textarea id="description" maxlength="400" required></textarea>
+        <textarea id="description" maxlength="400" name="descripcion_archivo" required></textarea>
         <div class="clasification">Clasificación</div>
         <div class="selection">
-            <div class="dropdown"s>
-                <div class="select">
-                    <span class="selected">Materia</span>
-                    <div class="caret"></div>
-                </div>
-                <ul class="menu">
-                    <li>Matemáticas</li>
-                    <li>Química</li>
-                    <li>Programación</li>
-                    <li>Inglés</li>
-                </ul>
+            <div class="dropdown" >
+                <select name="materia" class="select" id="">
+                    <option value="matematicas">Matemáticas</option>
+                    <option value="Quimica">Quimica</option>
+                    <option value="Programacion">Programacion</option>
+                    <option value="Inglés">Inglés</option>
+                    <option value="Matematicas I">Matematicas I</option>
+
+                </select>
             </div>
-            <div class="dropdown">
+            {% comment %} <div class="dropdown">
                 <div class="select">
                     <span class="selected">Clase</span>
                     <div class="caret"></div>
@@ -43,7 +43,7 @@
                     <li>Programación</li>
                     <li>Inglés I</li>
                 </ul>
-            </div>
+            </div> {% endcomment %}
         </div>
         <button class="btn btn-primary" type="submit">Subir</button>
     </div>

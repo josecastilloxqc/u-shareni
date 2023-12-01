@@ -12,32 +12,36 @@ DATABASE_URL = os.getenv("DATABASE")
 if not DATABASE_URL:
     raise Exception("DATABASE_URL environment variable is not set")
 
-engine = create_engine(DATABASE_URL)
+engine = create_engine(DATABASE_URL, echo=True)
 db = scoped_session(sessionmaker(bind=engine))
 
 def createtable():
+    db.execute(text("DROP TABLE IF EXISTS users CASCADE"))
+    db.execute(text("DROP TABLE IF EXISTS publi CASCADE"))
+    
     usuario = text("""
-        CREATE TABLE users(
-        id INT PRIMARY KEY not null, 
-        nombre TEXT NOT NULL, 
-        correo TEXT NOT NULL, 
-        password TEXT NOT NULL
-        )
+        CREATE TABLE users (
+            id SERIAL PRIMARY KEY,
+            nombre TEXT NOT NULL,
+            correo TEXT NOT NULL,
+            password TEXT NOT NULL
+        );
+
     """ )
     db.execute(usuario) 
 
     publicacion = text("""
-        CREATE TABLE publi (
-        id_usuarios INT , 
+    CREATE TABLE publi (
+        id SERIAL PRIMARY KEY,
+        id_usuarios INT, 
         titulo TEXT NOT NULL,
         archivo TEXT NOT NULL,
         materia TEXT NOT NULL,
         descripcion TEXT NOT NULL,
         interaccion INT NOT NULL,
-        FOREING KEY (id_usuarios) REFERENCES users (id)
-        )
-    
-    """)
+        FOREIGN KEY (id_usuarios) REFERENCES users (id)
+    )
+""")
 
     db.execute(publicacion) 
     db.commit()
