@@ -7,20 +7,23 @@
 {% block main %}
 
 
-<form method="POST">
+<form action="/cambiarDatos" method="POST">
 
     <h2>Perfil</h2>
+    <span>Al cambiar algun dato debera volver a iniciar sesión</span>
     <div class="form-group">
         <label for="name">Nombre:</label>
-        <input type="text" class="form-control" id="name" value="Tu Nombre" disabled>
+        <input type="text" class="form-control" id="name" name="nombreUsuario">
     </div>
-    <button type="button" class="btn btn-primary" onclick="changeName()">Cambiar Nombre</button>
-
+    <div class="form-group">
+        <label for="name">Correo:</label>
+        <input type="text" class="form-control" id="name" name="correoUsuario">
+    </div>
     <div class="form-group">
         <label for="password">Contraseña:</label>
-        <input type="password" class="form-control" id="password" value="********" disabled>
+        <input type="password" class="form-control" id="password" name="contraUsuario">
     </div>
-    <button type="button" class="btn btn-primary" onclick="changePassword()">Cambiar Contraseña</button>
+    <button type="submit" class="btn btn-primary">Cambiar Datos</button>
 
 </form>
 {% endblock %}

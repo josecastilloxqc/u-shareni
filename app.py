@@ -20,8 +20,6 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 app.secret_key = os.urandom(24)
 
-
-
 #index
 @app.route("/")
 def index():
@@ -72,12 +70,13 @@ def login():
 @app.route("/home")
 def home():
     if "user_id" in session:
-        print("CONSULTA A LA BASE DE DATOS")
+        #CONSULTA A LA BASE DE DATOS PARA RELLENAR LAS CARDS DE PUBLICACIONES
         query = text("SELECT * FROM publi WHERE id_usuarios = :id")
         result = db.execute(query, {"id": session['user_id']})
+        cards = result.fetchall()
         print("RESULTADO DE LA CONSULTA")
-        print(result)
-        return render_template("home.html", card = result)
+        print(cards)
+        return render_template("home.html", cards = cards)
     else:
         return render_template("login.html")
     
@@ -92,11 +91,17 @@ def logout():
     
 #--------------------------------------------------------------------
 
-@app.route("/upload", methods=["GET", "POST"])
+@app.route("/upload")
 def upload():
     """Upload file"""
-    return render_template("upload.html")
-    
+    try:
+        if "user_id" in session:
+            return render_template("upload.html")
+        else:
+            return render_template("login.html")
+    except Exception as e:
+        print(f"Error en la función 'upload': {str(e)}")
+        return render_template("login.html")
 #--------------------------------------------------------------------
 
     
@@ -145,6 +150,8 @@ def stringAleatorio():
 
 @app.route("/postear", methods=["POST"])
 def postear():
+    if "user_id" not in session:
+        return render_template("login.html", flash("NO ESTES DE ALUCIN"))
     try:
         if request.method == "POST":
         #Recibiendo los datos del formulario
@@ -175,8 +182,6 @@ def postear():
             db.commit()
             
             
-            
-            
             return render_template('upload.html'), flash("Archivo subido exitosamente")
         
     except RequestEntityTooLarge as e:
@@ -190,17 +195,67 @@ def postear():
 
 @app.route('/descargar/<nombre_archivo>')
 def descargar_archivo(nombre_archivo):
-    return send_from_directory('static/archivos', nombre_archivo, as_attachment=True)
+    try:
+        if "user_id" in session:
+            return send_from_directory('static/archivos', nombre_archivo, as_attachment=True)
+    except:
+        return render_template("login.html", flash("NO ESTES DE ALUCIN"))
+    
 
 #--------------------------------------------------------------------
+
+@app.route("/buscarPublicacion")
+def buscarPublicacion():
+    contenido = request.args.get("contenido")
+    query = (text("SELECT * FROM publi WHERE materia LIKE :contenido OR descripcion LIKE :contenido"))
+    result = db.execute(query, {"id": session['user_id'], "contenido": "%" + contenido + "%"})
+    cards = result.fetchall()
+    return render_template("home.html", cards=cards)
+# #--------------------------------------------------------------------
 
 
 @app.route("/perfil")
 def perfil():
-    return render_template("perfil.html")
+    try:
+        if "user_id" in session:
+            return render_template("perfil.html")
+    except:
+        return render_template("login.html", flash("NO ESTES DE ALUCIN"))
+    
+# #--------------------------------------------------------------------
 
+@app.route("/cambiarDatos", methods=["POST"])
+def cambiarDatos():
+    try:
+        control = 0
+        nombre = request.form.get("nombreUsuario")
+        password = request.form.get("contraUsuario")
+        correo = request.form.get("correoUsuario")
 
+        if nombre:
+            query = text("UPDATE users SET nombre = :nombre WHERE id = :id")
+            db.execute(query, {"id": session['user_id'], "nombre": nombre})
+            control += 1
 
+        if password:
+            query = text("UPDATE users SET password = :password WHERE id = :id")
+            db.execute(query, {"id": session['user_id'], "password": password})
+            control += 1
+
+        if correo:
+            query = text("UPDATE users SET correo = :correo WHERE id = :id")
+            db.execute(query, {"id": session['user_id'], "correo": correo})
+            control += 1
+
+        if control != 0:
+            db.commit()
+            flash("DATOS ACTUALIZADOS")
+            return render_template('login.html')
+
+    except Exception as e:
+        print(f"Error en la función 'cambiar_datos': {str(e)}")
+        flash("Hubo un error al actualizar los datos.")
+        return render_template('login.html')
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000, debug=True)
