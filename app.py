@@ -1,5 +1,12 @@
-import sqlite3
-from flask import Flask, render_template, redirect, request
+import os
+from psycopg2 import *
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import scoped_session, sessionmaker
+from flask import Flask, flash, redirect, render_template, request, session, url_for,jsonify, send_from_directory
+from dotenv import load_dotenv  
+from random import sample
+from werkzeug.utils import secure_filename 
+from werkzeug.exceptions import RequestEntityTooLarge
 
 
 app = Flask(__name__)
@@ -30,20 +37,29 @@ def index():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
-    
-    if request.method == "GET":
-        return render_template("login.html")
-    
-    # nombre_usuario = request.form.get("name")
-    # contraseña = request.form.get("password")
+    if request.method == "POST":
+        correo = request.form.get("correo")
+        password = request.form.get("password")
 
-    # if nombre_usuario == "usuario" and contraseña == "contraseña":
-    #     Session["logged_in"] = True
-    #     return redirect("/home.html")
-    # else:
-    #     return "Credenciales inválidas"
+        try:
+            if correo and password:
+                query = text("SELECT * FROM users WHERE correo = :correo")
+                result = db.execute(query, {"correo": correo})
+                datos = result.fetchall()
+                print(datos[0][3])
+                if password == datos[0][3]:
+                    session['user_id'] = datos[0][0]
+                    return render_template("home.html")
+            else:
+                flash("Por favor, introduce tu correo y contraseña")
+        except:
+            return render_template("login.html")
         
-    # return redirect("home.html")
+    return render_template("login.html")
+    
+    
+#--------------------------------------------------------------------
+
 @app.route("/home")
 def home():
     if "user_id" in session:
@@ -57,35 +73,10 @@ def home():
 @app.route("/logout")
 def logout():
     """Log user out"""
-
-    # Session.clear()
-
-    # return redirect("login.html")
-
-@app.route("/register", methods=["GET", "POST"])
-def register():
-    """Register user"""
-    if request.method == "GET":
-        return render_template("register.html")
+    session.clear()
+    return render_template("login.html")
     
-    nombre = request.form.get("name")
-    contraseña = request.form.get("password")
-    confirmacion = request.form.get("confirmation")
-    correo = request.form.get("correo")
-
-    # conn = sqlite3.connect("database.py")
-
-    # with conn:
-
-    #     try:
-    #         conn.execute("INSERT INTO usuarios (nombre, contraseña, correo) VALUES (?, ?, ?)", (nombre, contraseña, correo))
-    #     except:
-    #         return render_template("register.html")
-        
-
-    return redirect("login.html")
-
- 
+#--------------------------------------------------------------------
 
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
