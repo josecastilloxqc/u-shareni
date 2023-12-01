@@ -137,6 +137,7 @@ def postear():
             titulo = request.form.get("titulo_archivo")
             descripcion = request.form.get("descripcion_archivo")
             file = request.files['archivo_pdf']
+            materia = request.form.get("materia")
             print(titulo)
             print(descripcion)
             print(file)
@@ -148,6 +149,20 @@ def postear():
         
             upload_path = os.path.join (basepath, 'static/archivos', nuevoNombreFile) 
             file.save(upload_path)  
+            
+            query = text("INSERT INTO publi (id_usuarios, titulo, archivo, materia, descripcion, interaccion) VALUES (:id, :titulo, :archivo, :materia, :descripcion, :interaccion)")
+            
+            db.execute(query,  {'id': session['user_id'],
+                                'titulo': titulo,
+                                'archivo': nuevoNombreFile,
+                                'materia': materia,
+                                'descripcion': descripcion,
+                                'interaccion': 0})
+            db.commit()
+            
+            
+            
+            
             return render_template('upload.html'), flash("Archivo subido exitosamente")
         
     except RequestEntityTooLarge as e:

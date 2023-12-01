@@ -32,6 +32,7 @@ def createtable():
 
     publicacion = text("""
     CREATE TABLE publi (
+        id SERIAL PRIMARY KEY,
         id_usuarios INT, 
         titulo TEXT NOT NULL,
         archivo TEXT NOT NULL,
@@ -41,7 +42,6 @@ def createtable():
         FOREIGN KEY (id_usuarios) REFERENCES users (id)
     )
 """)
-
 
     db.execute(publicacion) 
     db.commit()
