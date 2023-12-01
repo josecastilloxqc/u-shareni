@@ -49,7 +49,16 @@ def login():
                 print(datos[0][3])
                 if password == datos[0][3]:
                     session['user_id'] = datos[0][0]
-                    return render_template("home.html")
+                    
+                    #CONSULTA A LA BASE DE DATOS PARA RELLENAR LAS CARDS DE PUBLICACIONES
+                    query = text("SELECT * FROM publi WHERE id_usuarios = :id")
+                    result = db.execute(query, {"id": session['user_id']})
+                    cards = result.fetchall()
+                    print("RESULTADO DE LA CONSULTA")
+                    print(cards)
+                    return render_template("home.html", cards = cards)
+                    #-----------------------------------------------
+                    
             else:
                 flash("Por favor, introduce tu correo y contraseña")
         except:
@@ -63,7 +72,12 @@ def login():
 @app.route("/home")
 def home():
     if "user_id" in session:
-        return render_template("home.html")
+        print("CONSULTA A LA BASE DE DATOS")
+        query = text("SELECT * FROM publi WHERE id_usuarios = :id")
+        result = db.execute(query, {"id": session['user_id']})
+        print("RESULTADO DE LA CONSULTA")
+        print(result)
+        return render_template("home.html", card = result)
     else:
         return render_template("login.html")
     

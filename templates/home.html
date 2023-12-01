@@ -8,27 +8,14 @@
 <body>
     <h1>Bienvenido a U-SHARENI</h1>
     <h2>Descubre nuestras tareas</h2>
-    <div class="card-container">
-      <div class="card">
-        <img src="{{ url_for('static', filename='images/image1.jpg') }}" alt="Image 1">
-        <h1>Card 1</h1>
-        <p>Content for Card 1</p>
+    {% for card in cards %}
+      <div class="card-container">
+        <div class="card">
+          <h1>{{ card.titulo }}</h1>
+          <p>{{ card.descripcion }}</p>
+          <a href="{{ url_for('descargar_archivo', nombre_archivo=card.archivo) }}" download>Descargar</a> 
+        </div>
       </div>
-      <div class="card">
-        <img src="{{ url_for('static', filename='images/image2.jpg') }}" alt="Image 2">
-        <h1>Card 2</h1>
-        <p>Content for Card 2</p>
-      </div>
-      <div class="card">
-        <img src="{{ url_for('static', filename='images/image3.jpg') }}" alt="Image 3">
-        <h1>Card 3</h1>
-        <p>Content for Card 3</p>
-      </div>
-      <div class="card">
-        <img src="{{ url_for('static', filename='images/image4.jpg') }}" alt="Image 4">
-        <h1>Card 4</h1>
-        <p>Content for Card 4</p>
-      </div>
-    </div>
+    {% endfor %}
   </body>
 {% endblock %}
