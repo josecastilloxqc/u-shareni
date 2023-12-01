@@ -395,6 +395,7 @@ body.dark .switch::before {
     border-radius: 6px;
 }
 
+/*------------Upload------------------*/
 .home-content .upload {
     position: absolute;
     display: flex;
@@ -615,7 +616,7 @@ body.dark .active {
     display: block;
     opacity: 1;
 }
-
+/*---------------------Card container---------------------*/
 .card-container {
     display: grid; /* Utiliza CSS Grid para organizar las cards */
     grid-template-columns: 1fr 1fr; /* Crea dos columnas de igual tamaño */
@@ -652,3 +653,83 @@ body.dark .active {
     font-size: 16px;
     color: #888;
   }
+
+/*-----------------Perfil----------------------*/
+.perfil {
+    background: var(--primary-color-ligth);
+    border-radius: 6px;
+    width: 97.5%;
+    height: 95%;
+    border: dashed 1px var(--primary-color);
+    transform: translateY(2.5%);
+}
+
+.perfil p {
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: 2%;
+    color: var(--text-color);
+}
+
+.perfil span {
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+.perfil .form-group {
+    box-sizing: border-box;
+    margin-top: 30px;
+    margin-bottom: 30px;    
+}
+
+.perfil .container {
+    margin-top: 15px;
+    height: 300px;
+    width: 400px;
+    background: var(--sidebar-color);
+    padding: 15px 15px;
+    border-radius: 6px;
+    border: none;
+}
+
+.perfil .form-group input {
+    outline: none;
+    width: 300px;
+    height: 40px;
+    font-size: 20px;
+    padding: 0px 5px;
+    line-height: 20px;
+    border-radius: 6px;
+    border: solid 2px var(--primary-color);
+    background: transparent;
+    transition: 0.2s ease;
+    z-index: 1111;
+}
+
+.perfil .labelline {
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    transform: translateY(-60px);
+    margin-left: 40px;
+    color: var(--primary-color)
+}
+
+.perfil button {
+    margin-top: 15px;
+    font-size: 20px;
+    width: 15%;
+    border: none;
+    background: var(--primary-color);
+    color: #f6f5ff;
+    border-radius: 6px;
+    cursor: pointer ;
+}
+
+body.dark .perfil .container {
+    background: #888;
+}
+
+body.dark .perfil button {
+    background: #888;
+}
