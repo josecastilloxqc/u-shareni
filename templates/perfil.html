@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Cargar Tareas
+{% endblock %}
+
+{% block main %}
+
+
+<form method="POST">
+
+    <h2>Perfil</h2>
+    <div class="form-group">
+        <label for="name">Nombre:</label>
+        <input type="text" class="form-control" id="name" value="Tu Nombre" disabled>
+    </div>
+    <button type="button" class="btn btn-primary" onclick="changeName()">Cambiar Nombre</button>
+
+    <div class="form-group">
+        <label for="password">Contraseña:</label>
+        <input type="password" class="form-control" id="password" value="********" disabled>
+    </div>
+    <button type="button" class="btn btn-primary" onclick="changePassword()">Cambiar Contraseña</button>
+
+</form>
+{% endblock %}
