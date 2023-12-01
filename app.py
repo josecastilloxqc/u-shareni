@@ -165,6 +165,14 @@ def descargar_archivo(nombre_archivo):
 
 #--------------------------------------------------------------------
 
+
+@app.route("/perfil")
+def perfil():
+    return render_template("perfil.html")
+
+
+
+
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000, debug=True)
  
