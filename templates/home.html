@@ -7,15 +7,16 @@
 {% block main %}
 <body>
     <h1>Bienvenido a U-SHARENI</h1>
-    <h2>Descubre nuestras tareas</h2>
+    <h2>Descubre más tareas</h2>
     {% for card in cards %}
       <div class="card-container">
         <div class="card">
           <h1>{{ card.titulo }}</h1>
           <p>{{ card.descripcion }}</p>
-          <a href="{{ url_for('descargar_archivo', nombre_archivo=card.archivo) }}" download>Descargar</a> 
+          <a href="{{ url_for('descargar_archivo', nombre_archivo=card.archivo) }}" download>Descargar</a>
         </div>
       </div>
     {% endfor %}
+
   </body>
 {% endblock %}

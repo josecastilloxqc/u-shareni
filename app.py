@@ -47,14 +47,7 @@ def login():
                 print(datos[0][3])
                 if password == datos[0][3]:
                     session['user_id'] = datos[0][0]
-                    
-                    #CONSULTA A LA BASE DE DATOS PARA RELLENAR LAS CARDS DE PUBLICACIONES
-                    query = text("SELECT * FROM publi WHERE id_usuarios = :id")
-                    result = db.execute(query, {"id": session['user_id']})
-                    cards = result.fetchall()
-                    print("RESULTADO DE LA CONSULTA")
-                    print(cards)
-                    return render_template("home.html", cards = cards)
+                    return redirect(url_for("home"))
                     #-----------------------------------------------
                     
             else:
@@ -69,17 +62,22 @@ def login():
 
 @app.route("/home")
 def home():
-    if "user_id" in session:
-        #CONSULTA A LA BASE DE DATOS PARA RELLENAR LAS CARDS DE PUBLICACIONES
-        query = text("SELECT * FROM publi LIMIT 3")
-        result = db.execute(query)
-        cards = result.fetchall()
-        print("RESULTADO DE LA CONSULTA")
-        print(cards)
-        return render_template("home.html", cards = cards)
-    else:
+    try:
+        if "user_id" in session:
+             #CONSULTA A LA BASE DE DATOS PARA RELLENAR LAS CARDS DE PUBLICACIONES
+            query = text("select * from publi WHERE id_usuarios = :id")
+            result = db.execute(query, {"id": session['user_id']})
+            elementos = []
+            print("RUTA HOME")
+            for i in result:
+                print(i)
+                elementos.append(i)
+            return render_template("home.html", cards = elementos)  
+        else:
+            return render_template("login.html")
+    except Exception as e:
+        print(f"Error en la función 'home': {str(e)}")
         return render_template("login.html")
-    
 #--------------------------------------------------------------------
 
     
@@ -208,7 +206,7 @@ def descargar_archivo(nombre_archivo):
 def buscarPublicacion():
     contenido = request.args.get("contenido")
     query = (text("SELECT * FROM publi WHERE materia LIKE :contenido OR descripcion LIKE :contenido"))
-    result = db.execute(query, {"id": session['user_id'], "contenido": "%" + contenido + "%"})
+    result = db.execute(query, {"contenido": "%" + contenido + "%"})
     cards = result.fetchall()
     return render_template("home.html", cards=cards)
 # #--------------------------------------------------------------------

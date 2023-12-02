@@ -537,24 +537,25 @@ body.dark .home-content .file-description button {
 
 /*---------------------Card container---------------------*/
 .card-container {
-    display: grid; /* Utiliza CSS Grid para organizar las cards */
+    display: inline-block; /* Utiliza CSS Grid para organizar las cards */
     grid-template-columns: 1fr 1fr; /* Crea dos columnas de igual tamaño */
     gap: 15px; /* Establece un espacio entre las cards */
     justify-items: center; /* Centra horizontalmente las cards dentro de las columnas */
     align-content: center; /* Centra verticalmente las filas de cards */
     height: 90vh; /* Establece la altura del contenedor al 100% del viewport */
     margin-top : -70px;
+    padding-top: 5rem;
   }
   
 
   .card {
-    background-color: #002952;
+    background-color: #858585;
     padding: 20px;
     text-align: center;
     border-radius: 5px; /* Agrega esquinas redondeadas */
-    width: 350px; /* Ajusta el ancho de la card según tus necesidades */
+    width: 250px; /* Ajusta el ancho de la card según tus necesidades */
     height: 200px; /* Ajusta la altura de la card según tus necesidades */
-   
+    margin: 1rem;
   }
   
   .card img {
@@ -570,7 +571,7 @@ body.dark .home-content .file-description button {
   
   .card p {
     font-size: 16px;
-    color: #888;
+    color: rgb(46, 46, 46)000;
   }
 
 /*-----------------Perfil----------------------*/
