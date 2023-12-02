@@ -127,8 +127,22 @@
                 else{
                     modeText.innerText = "Modo Oscuro"
                 }
+
+                const darkActivate = body.classList.contains("dark");
+                localStorage.setItem("dark", darkActivate);
             });
-        
+
+            document.addEventListener("DOMContentLoaded", () => {
+                const darkSaved = localStorage.getItem("dark");
+            
+            if (darkSaved === null || darkSaved === "false") {
+                document.body.classList.remove("dark");
+            }
+            else {
+                document.body.classList.add("dark");
+            }
+            });
+                    
             document.getElementById('searchForm').addEventListener('submit', function(event) {o
                 event.preventDefault();
                 this.submit();
