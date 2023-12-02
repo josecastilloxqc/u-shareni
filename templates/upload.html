@@ -23,12 +23,12 @@
         <div class="clasification">Clasificación</div>
         <div class="selection">
             <div class="dropdown" >
-                <select name="materia" class="select" id="">
+                <select name="materia" class="select" id="" required>
                     <option value="matematicas">Matemáticas</option>
-                    <option value="Quimica">Quimica</option>
-                    <option value="Programacion">Programacion</option>
+                    <option value="Quimica">Química</option>
+                    <option value="Programacion">Programación</option>
                     <option value="Inglés">Inglés</option>
-                    <option value="Matematicas I">Matematicas I</option>
+                    <option value="Matematicas I">Matemáticas I</option>
 
                 </select>
             </div>
@@ -59,37 +59,6 @@
             e.preventDefault();
             inputFile.files = e.dataTransfer.files;
             uploadPdf();
-          });
-    
-    /*-----------------Lista desplegables-------------------*/
-    const dropdowns = document.querySelectorAll('.dropdown');
-          dropdowns.forEach(dropdown => {
-            const select = dropdown.querySelector('.select'),
-                  caret = dropdown.querySelector('.caret'),
-                  menu = dropdown.querySelector('.menu'),
-                  options = dropdown.querySelectorAll('.menu li'),
-                  selected = dropdown.querySelector('.selected');
-
-            select.addEventListener('click', () => {
-                select.classList.toggle('select-clicked');
-                caret.classList.toggle('caret-rotate');
-                menu.classList.toggle('menu-open');
-            });
-
-            options.forEach(option => {
-                option.addEventListener('click', () => {
-                    selected.innerText = option.innerText;
-                    select.classList.remove('selected-clicked');
-                    caret.classList.remove('caret-rotate');
-                    menu.classList.remove('menu-open');
-
-                    options.forEach(option => {
-                        option.classList.remove('active');
-                    });
-
-                    option.classList.add('active');
-                });
-            });
-          });
+          });         
 </script>
 {% endblock %}
