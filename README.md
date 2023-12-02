@@ -20,5 +20,10 @@ La plataforma consta de varias rutas, cada una diseñada para proporcionar una e
 
 La plataforma U-SHARENI no solo aborda la necesidad de intercambio de información entre estudiantes, sino que también ofrece un entorno versátil y fácil de usar que fomenta la colaboración y el aprendizaje colectivo. Este proyecto no solo se enfoca en la tecnología, sino también en la construcción de una comunidad educativa sólida y cohesionada.
 
+Hubieron algunas situaciones en la que el grupo tuvo sus diferentes opiniones, una de ellas fue fue el diseño de la pagina entre todo el grupo debatimos para elegir algunoa detalles, pero la indecision del grupo fue al momento de elegir el proyecto, estamos muy contentos con el resultado del proyecto.
+
+En este camino tuvimos dificultades pero salimos adelante, una de esas dificultades fue trabajar con git y repositorios, ya que era algo nuevo para nosotros, pero ahora estamos felices de saber que aprendimos algo nuevo y muy util para el futuro.
+
+El diseño de css fue hecho con mucho esfuerzo, varias horas dedicas al apartado del Front-end el grupo hizo una meeting por discord para determinar detalles del css.
 
 
