@@ -1,4 +1,7 @@
 # u-shareni
+# link de video: https://youtu.be/DGrjYPwTO2M
+
+# Descripción:
 U-SHARENI es un proyecto innovador que surge en respuesta a la creciente necesidad de los estudiantes de compartir información relacionada con sus estudios. Esta iniciativa ha dado lugar a la creación de una plataforma única, también conocida como U-SHARENI, que tiene como objetivo principal unir a la comunidad estudiantil en un espacio colaborativo donde puedan compartir sus conocimientos.
 
 La arquitectura de U-SHARENI se basa en el micro-framework FLASK, lo que garantiza una estructura eficiente y ágil. En la implementación de la plataforma, se utilizan diversos lenguajes y tecnologías, como HTML para la estructura de hipertexto, Python y JavaScript para la programación, SQL para la gestión de bases de datos, y CSS para el diseño visual. El editor de texto empleado para el desarrollo es Visual Studio Code, asegurando así un entorno de trabajo moderno y robusto.
