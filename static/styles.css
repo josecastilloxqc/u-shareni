@@ -530,6 +530,10 @@ body.dark .home-content .file-description button {
     border: none;
 }
 
+body.dark .dropdown select:hover {
+    color: var(--text-color);
+}
+
 .dropdown option {
     background: var(--primary-color-ligth);
     color: var(--text-color);
