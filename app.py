@@ -205,8 +205,9 @@ def descargar_archivo(nombre_archivo):
 @app.route("/buscarPublicacion")
 def buscarPublicacion():
     contenido = request.args.get("contenido")
-    query = (text("SELECT * FROM publi WHERE materia LIKE :contenido OR descripcion LIKE :contenido"))
-    result = db.execute(query, {"contenido": "%" + contenido + "%"})
+    contenido_lower = contenido.lower()
+    query = (text("SELECT * FROM publi WHERE LOWER(materia) LIKE :contenido OR LOWER(descripcion) LIKE :contenido"))
+    result = db.execute(query, {"contenido": "%" + contenido_lower + "%"})
     cards = result.fetchall()
     return render_template("home.html", cards=cards)
 # #--------------------------------------------------------------------
