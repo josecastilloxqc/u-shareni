@@ -540,42 +540,77 @@ body.dark .dropdown select:hover {
 }
 
 /*---------------------Card container---------------------*/
+.home-cards {
+    background-color: var(--sidebar-color);
+}
+
+.home-cards h1 {
+    margin-top: 30px;
+}
+
+.home-cards h2 {
+    margin-bottom: 30px;
+}
+
+body.dark .home-cards h1,
+body.dark .home-cards h2 {
+    color: var(--text-color);
+}
+
 .card-container {
-    display: inline-block; /* Utiliza CSS Grid para organizar las cards */
-    grid-template-columns: 1fr 1fr; /* Crea dos columnas de igual tamaño */
-    gap: 15px; /* Establece un espacio entre las cards */
-    justify-items: center; /* Centra horizontalmente las cards dentro de las columnas */
-    align-content: center; /* Centra verticalmente las filas de cards */
-    height: 90vh; /* Establece la altura del contenedor al 100% del viewport */
-    margin-top : -70px;
-    padding-top: 5rem;
+    display: inline-flex; 
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    margin-top: 30px;
+    padding-bottom: 80px;
   }
   
 
   .card {
-    background-color: #858585;
+    background-color: var(--primary-color-ligth);
     padding: 20px;
     text-align: center;
-    border-radius: 5px; /* Agrega esquinas redondeadas */
-    width: 250px; /* Ajusta el ancho de la card según tus necesidades */
-    height: 200px; /* Ajusta la altura de la card según tus necesidades */
+    border-radius: 6px;
+    width: 250px;
+    height: 300px;
     margin: 1rem;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   }
   
   .card img {
-    width: 100%;
-    height: auto;
+    width: 35px;
+    height: 35px;
     margin-bottom: 10px;
+    margin-top: 5px;
   }
   
   .card h1 {
+    color: #18191a;
     font-size: 20px;
     margin-bottom: 10px;
+    margin-top: 20px;
+  }
+
+  body.dark .card h1 {
+    color: var(--text-color);
   }
   
   .card p {
-    font-size: 16px;
-    color: rgb(46, 46, 46)000;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #18191a;
+  }
+
+  body.dark .card p {
+    color: var(--text-color);
+  }
+
+  .card a {
+    font-size: 18px;
+    text-decoration: underline;
+    color: var(--primary-color);
   }
 
 /*-----------------Perfil----------------------*/
