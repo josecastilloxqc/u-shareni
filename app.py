@@ -65,8 +65,8 @@ def home():
     try:
         if "user_id" in session:
              #CONSULTA A LA BASE DE DATOS PARA RELLENAR LAS CARDS DE PUBLICACIONES
-            query = text("select * from publi WHERE id_usuarios = :id")
-            result = db.execute(query, {"id": session['user_id']})
+            query = text("select * from publi")
+            result = db.execute(query)
             elementos = []
             print("RUTA HOME")
             for i in result:
