@@ -71,8 +71,8 @@ def login():
 def home():
     if "user_id" in session:
         #CONSULTA A LA BASE DE DATOS PARA RELLENAR LAS CARDS DE PUBLICACIONES
-        query = text("SELECT * FROM publi WHERE id_usuarios = :id")
-        result = db.execute(query, {"id": session['user_id']})
+        query = text("SELECT * FROM publi LIMIT 3")
+        result = db.execute(query)
         cards = result.fetchall()
         print("RESULTADO DE LA CONSULTA")
         print(cards)
